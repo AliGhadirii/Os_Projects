@@ -42,6 +42,11 @@ then
 $ cd xv6-public
 $ make qemu-nox
 ```
+
+# **Project 2, green thread **
+In this project i tend to write my own thread library named green thread which acts like pthread library in c.
+
+
 # **Support**
 
 Reach out to me at one of the following places!
