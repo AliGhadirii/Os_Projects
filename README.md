@@ -8,6 +8,8 @@ Language : C
 
 # **Project 1, Add system call to xv6 kernel**
 
+In this project I tried to add a system call named getreadcount() to xv6 kernal which counts the number of executions of read() system call since we boot the OS.
+
 # **PreRequirements**
 
 For This Project You Need below Requirements :
