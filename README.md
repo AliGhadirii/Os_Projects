@@ -37,8 +37,8 @@ $ git clone https://github.com/mit-pdos/xv6-public.git
 ```
 then 
 ```shell
-cd xv6-public
-make qemu-nox
+$ cd xv6-public
+$ make qemu-nox
 ```
 # **Support**
 
