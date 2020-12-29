@@ -97,14 +97,25 @@ int green_yield(){
 
 // waits for specefied thread till it finishes and get result value
 int green_join(green_t * thread ,void ** res) {
-	green_t * susp = running ;
 	// check if target thread has finished
-	// add as joining thread
-	// select the next thread for execution
-	running = next ;
-	// save current state into susp->context and switch to next->context
-	
+	if (!thread->zombie){
+		green_t * susp = running ;
+
+		// add as joining thread
+		susp -> join = thread;
+
+
+		// select the next thread for execution
+		green_t * next = deQueue(ready_queue);
+		running = next ;
+		// save current state into susp->context and switch to next->context
+		swapcontext(susp->context, next->context)
+	}
+
 	// collect result
+	*res = thread -> retval;
+
+
 	// free context
 	free(thread->context);
 	return 0 ;
