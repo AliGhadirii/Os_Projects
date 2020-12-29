@@ -52,7 +52,7 @@ void green_thread(){
 	this ->zombie = 1;
 
 	// find the next thread to run and write its address to next variable	
-	green_t * next = deQueue(queue_t* ready_queue);
+	green_t * next = deQueue(ready_queue);
 	running =next;
 	setcontext(next->context);
 }
@@ -109,7 +109,7 @@ int green_join(green_t * thread ,void ** res) {
 		green_t * next = deQueue(ready_queue);
 		running = next ;
 		// save current state into susp->context and switch to next->context
-		swapcontext(susp->context, next->context)
+		swapcontext(susp->context, next->context);
 	}
 
 	// collect result

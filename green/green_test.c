@@ -1,4 +1,4 @@
-q#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #ifdef POSIX
 #include "posix.h"
