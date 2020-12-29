@@ -34,10 +34,25 @@ void init(){
 void green_thread(){
 	green_t * this=running;
 	// call target function and save its result
-	// place waiting (joining) thread in ready queue
-	// save result of execution and zombie status
-	// find the next thread to run and write its address to next variable
+	void * res = (*this->fun)(this->arg);
 
+	// place waiting (joining) thread in ready queue
+	green_t * temp = head_ll;
+
+	while(temp->next != NULL)
+	{
+		if(temp->join == this)
+			enQueue(ready_queue, temp);
+
+		temp = temp->next;
+	}
+
+	// save result of execution and zombie status
+	this->retval = res;
+	this ->zombie = 1;
+
+	// find the next thread to run and write its address to next variable	
+	green_t * next = deQueue(queue_t* ready_queue);
 	running =next;
 	setcontext(next->context);
 }
