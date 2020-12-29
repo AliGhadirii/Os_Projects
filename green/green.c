@@ -86,10 +86,12 @@ int green_create(green_t *new ,void *(*fun)(void *),void *arg) {
 // will give other green thread opportunity of having CPU!
 int green_yield(){
 	green_t * susp = running ;
-	// add susp to ready queue
+	enQueue(ready_queue, susp);
 	// select the next thread for execution
+	green_t* next = deQueue(ready_queue);
 	running = next ;
 	// save current state into susp->context and switch to next->context
+	swapcontext(susp->context, next->context);
 	return 0 ;
 }
 
