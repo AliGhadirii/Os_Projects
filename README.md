@@ -2,7 +2,7 @@
 
 These two mini project were my os course projects in the university.
 
-Author : Ali Ghadiri
+Author : Ali Ghadiri, Afrooz Sheikholeslami
 
 Language : C
 
