@@ -56,6 +56,7 @@ int main (int argc , char * argv[]){
 	for(int i=0;i<3;i++){
 		a[i].p=i;
 		a[i].max_num=rand()%10+1;
+		
 	}
 	
 	for(int i=0;i<3;i++)

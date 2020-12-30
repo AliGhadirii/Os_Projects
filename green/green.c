@@ -49,7 +49,7 @@ void green_thread(){
 
 	// save result of execution and zombie status
 	this->retval = res;
-	this ->zombie = 1;
+	this->zombie = 1;
 
 	// find the next thread to run and write its address to next variable	
 	green_t * next = deQueue(ready_queue);
@@ -59,11 +59,14 @@ void green_thread(){
 
 // will create a new green thread
 int green_create(green_t *new ,void *(*fun)(void *),void *arg) {
+
 	ucontext_t * cntx = (ucontext_t *) malloc(sizeof(ucontext_t));
 	getcontext(cntx);
+
 	void * stack = malloc(STACK_SIZE);
 	cntx->uc_stack.ss_sp = stack;
 	cntx->uc_stack.ss_size = STACK_SIZE;
+
 	makecontext(cntx, green_thread, 0);
 
 	new->context = cntx ;
@@ -118,5 +121,6 @@ int green_join(green_t * thread ,void ** res) {
 
 	// free context
 	free(thread->context);
+	
 	return 0 ;
 }
