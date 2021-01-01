@@ -59,7 +59,7 @@ green_t* deQueue(queue_t* q)
 void printQueue(queue_t * q,green_t * head)
 {
 	if(q->front == NULL) {
-		printf("empry!\n");
+		printf("empty!\n");
 		return;
 	}
 	node_t* temp = q->front;
