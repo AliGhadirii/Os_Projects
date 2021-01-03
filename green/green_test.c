@@ -41,8 +41,8 @@ void * test(void * arg){
 		
 		(*sum)+=loop;
 		loop--;
-		usleep(100000);
-		green_yield();
+		usleep(1000000);
+		//green_yield();
 	}
 	printf("thread #%d finished\n",p);
 
@@ -65,10 +65,8 @@ int main (int argc , char * argv[]){
 	int *retval =(int*)malloc(sizeof(int));
 	for(int i=0;i<3;i++){
 		green_join(&g[i], (void **)&retval);
-		
 		printf("Result for thread #%d: %d\n",i,*retval);
 	}
 	printf("all threads are finished.\n");
-		
 	return 0 ;
 }

@@ -28,46 +28,46 @@ static sigset_t block;
 green_t * head_ll = &main_green;
 queue_t * ready_queue;
 
-void handler(int);
+void handler();
 
 // this function is called once program loads into memory regurdless of what function is called!
 static void init( ) __attribute__((constructor));
 void init()
 {
 	//sigemptyset(&block);
-	//sigaddset(&block, SIGVTALRM);
+	//sigaddset(&block, SIGALRM);
 
-	struct sigaction act = {0};
-	struct timeval interval;
-	struct itimerval period;
+	// struct sigaction act = {0};
+	// struct timeval interval;
+	// struct itimerval period;
 
-	act.sa_handler = handler;
-	assert(sigaction(SIGVTALRM, &act , NULL) == 0 );
-	interval.tv_sec = 0;
-	interval.tv_usec = PERIOD;
-	period.it_interval = interval;
-	period.it_value = interval;
-	setitimer(ITIMER_VIRTUAL, &period , NULL);
+	// act.sa_handler = handler;
+	// assert(sigaction(SIGVTALRM, &act , NULL) == 0 );
+	// interval.tv_sec = 0;
+	// interval.tv_usec = PERIOD;
+	// period.it_interval = interval;
+	// period.it_value = interval;
+	// setitimer(ITIMER_VIRTUAL, &period , NULL);
+	signal(SIGALRM, handler);
+	ualarm(10, 10);
 
 	getcontext(&main_cntx);
 	ready_queue = createQueue();
 }
 
-void handler(int sig)
+void handler()
 {
-
-	if (sig == SIGVTALRM)
-	{
-		write(STDOUT_FILENO, "Hi\n",strlen("Hi\n"));
-
-		green_t * susp = running ;
-		enQueue(ready_queue, susp);
 	
-		green_t* next = deQueue(ready_queue);
-		running = next ;
+	//write(STDOUT_FILENO, "Hi\n",strlen("Hi\n"));
 	
-		swapcontext(susp->context, next->context);	
-	}
+	green_t * susp = running ;
+	enQueue(ready_queue, susp);
+
+	green_t* next = deQueue(ready_queue);
+	running = next ;
+
+	swapcontext(susp->context, next->context);	
+
 }
 
 
