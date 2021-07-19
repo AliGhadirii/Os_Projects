@@ -1,4 +1,4 @@
-# *Os_Projects* 
+# *Operating System Course Projects* 
 
 These two mini project were our Operating System's course projects in the university.
 
