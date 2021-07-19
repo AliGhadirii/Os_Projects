@@ -1,8 +1,8 @@
 # *Os_Projects* 
 
-These two mini project were our os course projects in the university.
+These two mini project were our Operating System's course projects in the university.
 
-Author : Ali Ghadiri, Afrooz Sheikholeslami
+Authors : Ali Ghadiri, [Afrooz Sheikholeslami](https://github.com/afroozsheikh) 
 
 Language : C
 
